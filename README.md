@@ -21,28 +21,28 @@ This project contains an eBPF/XDP program written in C and Go to drop TCP packet
 First, compile the C code into an eBPF object file:
 ```sh
 clang -O2 -target bpf -c drop_tcp_port.c -o drop_tcp_port.o
-
-## Build the Go Program
+```
+### Build the Go Program
 
 Build the Go program using the following command:
 
 ```sh
 sudo /usr/local/go/bin/go build -o xdp_prog main.go
-
+```
 ## Run the Program
 
 Run the compiled Go program with the desired port number (default is 4040). For example, to use port 8080:
 
 ```sh
 sudo ./xdp_prog 8080
-
+```
 ## Testing
 
 To verify that the XDP program is dropping packets on the specified port, use tcpdump to monitor the network traffic on the loopback interface:
 
 ```sh
 sudo tcpdump -i lo tcp port <PORT>
-
+```
 ## Code Overview
 
 ### C Code (drop_tcp_port.c)
